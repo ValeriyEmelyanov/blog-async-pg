@@ -1,0 +1,23 @@
+В консоли PostgreSQL выполнить команду (для генерации uuid функцией uuid_generate_v4()):
+> CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+Это действие тоже можно сделать через миграции.
+
+Установить необходимые пакеты:
+> pip install sqlalchemy
+> pip install psycopg2
+> pip install alembic
+
+Подготовить файлы с описанием таблиц с помощью sqlalchemy, к этим файлам будет отсылка из migrations\env.py.
+
+Инициализировать Alembic (будет создан alembic.ini и каталог migrations с содержимым):
+> alembic init migrations
+
+В alembic.ini указать url базы:
+sqlalchemy.url = postgresql://%(DB_USER)s:%(DB_PASS)s@%(DB_HOST)s:5432/%(DB_NAME)s
+Переопределить файл migrations\env.py.
+
+Сгенерировать файл миграции:
+> alembic revision --autogenerate -m "Added required tables"
+
+Обновить БД (применить файл миграции):
+> alembic upgrade head
