@@ -1,7 +1,7 @@
 import sqlalchemy
 from sqlalchemy import Table, Column, ForeignKey, BigInteger, String, DateTime, Text
 
-from .users import users_table
+from .users_schema import users_table
 
 metadata = sqlalchemy.MetaData()
 

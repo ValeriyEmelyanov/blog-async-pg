@@ -5,8 +5,10 @@ import uvicorn
 from fastapi import FastAPI
 
 from db.db import database
-from db.posts import post_table
-from db.users import users_table
+
+from db.posts_schema import post_table
+from db.users_schema import users_table
+from app.routes import users
 
 
 @asynccontextmanager
@@ -17,6 +19,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
+app.include_router(users.router)
 
 
 @app.get("/")

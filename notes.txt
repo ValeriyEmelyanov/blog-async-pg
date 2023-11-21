@@ -1,6 +1,10 @@
+За основу взята статья "Пишем веб сервис на Python с помощью FastAPI" https://habr.com/ru/articles/513328/
+    https://github.com/NeverWalkAloner/async-blogs
+
 В консоли PostgreSQL выполнить команду (для генерации uuid функцией uuid_generate_v4()):
 > CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-Это действие тоже можно сделать через миграции.
+    Это действие тоже можно сделать через миграции.
+    Как генерируются UUID   https://habr.com/ru/companies/vk/articles/522094/
 
 Установить необходимые пакеты:
 > pip install sqlalchemy

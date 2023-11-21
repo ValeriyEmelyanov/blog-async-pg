@@ -6,7 +6,7 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from app.db import posts, users
+from app.db import posts_schema, users_schema
 
 # Alembic Config объект предоставляет доступ к переменным из файла alembic.ini
 config = context.config
@@ -22,7 +22,8 @@ fileConfig(config.config_file_name)
 
 # target_metadata = [users.metadata, posts.metadata]
 # target_metadata = [users.metadata]
-target_metadata = [users.metadata, posts.metadata]
+target_metadata = [users_schema.metadata, posts_schema.metadata]
+
 
 def run_migrations_offline():
     """Run migrations in 'offline' mode.
