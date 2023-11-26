@@ -10,9 +10,13 @@
 * Alembic
 
 ### Интерфейс приложения
-* /signup - регистрация пользователя
-* /auth - аутентификация пользователя
-* /users/me - информация о текущем пользователе
+* /signup, POST - регистрация пользователя
+* /auth, POST - аутентификация пользователя
+* /users/me, GET - информация о текущем пользователе
+
+* /posts, POST - добавление нового поста 
+* /posts/{post_id}, GET - получение поста по идентификатору
+* /posts/{post_id}, PUT - изменение поста с указанным идентификатором
 
 ### Рабочие заметки
 
@@ -46,7 +50,7 @@
 > alembic init migrations
 
 В alembic.ini указать url базы:
-sqlalchemy.url = postgresql://%(DB_USER)s:%(DB_PASS)s@%(DB_HOST)s:5432/%(DB_NAME)s
+> sqlalchemy.url = postgresql://%(DB_USER)s:%(DB_PASS)s@%(DB_HOST)s:5432/%(DB_NAME)s
 
 Переопределить файл migrations\env.py.
 
