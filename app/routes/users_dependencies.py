@@ -15,5 +15,5 @@ async def get_current_user(token: str = Depends(oauth2_scheme)) -> user_model.Us
             detail="Invalid authentication credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    user_dict = {"id": db_user["id"], "email": db_user["email"], "name": db_user["name"]}
+    user_dict = {"id": db_user["user_id"], "email": db_user["email"], "name": db_user["name"]}
     return user_model.User(**user_dict)

@@ -8,7 +8,7 @@ from .users_dependencies import get_current_user
 router = APIRouter()
 
 
-@router.post("/signup", response_model=UserWithToken)
+@router.post("/signup", response_model=UserWithToken, status_code=status.HTTP_201_CREATED)
 async def create_user(user: UserCreate):
     db_user = await users.get_user_by_email(email=user.email)
     if db_user:
@@ -24,7 +24,11 @@ async def auth(form_data: OAuth2PasswordRequestForm = Depends()):
     if not users.validate_password(password=form_data.password, hashed_password=db_user["hashed_password"]):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Incorrect email or password")
     db_token = await users.create_user_token(user_id=db_user["id"])
-    return {"token": db_token["token"], "expires": db_token["expires"], "token_type": "bearer"}
+    return {
+        "token": db_token["token"],
+        "expires": db_token["expires"],
+        "token_type": "bearer"
+    }
 
 
 @router.get("/users/me", response_model=User)
